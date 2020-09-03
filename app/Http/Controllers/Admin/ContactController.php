@@ -135,7 +135,7 @@ class ContactController extends Controller
 
         $contact->delete();
 
-        Toastr::success('Contact Successfully Deleted', 'Success');
+        // Toastr::success('Contact Successfully Deleted', 'Success');
         return redirect()->back();
     }
 }

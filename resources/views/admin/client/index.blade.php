@@ -32,10 +32,10 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
                     <div class="header">
-                        <h2>
-                            CLIENT LIST
+                        <h4>
+                            Active Client List
                             <span class="badge bg-blue">{{ $clients->count() }}</span>
-                        </h2>
+                        </h4>
                     </div>
                     <div class="body">
                         <div class="table-responsive">
@@ -145,40 +145,61 @@
 
         <!-- Demo Js -->
         <script src="{{ asset('assets/backend/js/demo.js') }}"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8.17.4/dist/sweetalert2.all.min.js"></script>
         <script type="text/javascript">
-            function deleteClient(id) {
-                const swalWithBootstrapButtons = Swal.mixin({
-                    customClass: {
-                        confirmButton: 'btn btn-success' ,
-                        cancelButton: 'btn btn-danger'
-                    },
-                    buttonsStyling: false
-                })
+            // function deleteClient(id) {
+            //     const swalWithBootstrapButtons = Swal.mixin({
+            //         customClass: {
+            //             confirmButton: 'btn btn-success' ,
+            //             cancelButton: 'btn btn-danger'
+            //         },
+            //         buttonsStyling: false
+            //     })
 
-                swalWithBootstrapButtons.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
-                    type: 'warning',
-                    showCancelButton: true,
-                    confirmButtonText: 'Yes, delete it!' ,
-                    cancelButtonText: 'No, cancel!',
-                    reverseButtons: true
-                }).then((result) => {
-                    if (result.value) {
-                        event.preventDefault();
-                        document.getElementById('delete-form-'+id).submit();
-                    } else if (
-                            /* Read more about handling dismissals below */
-                    result.dismiss === Swal.DismissReason.cancel
-                    ) {
-                        swalWithBootstrapButtons.fire(
-                            'Cancelled',
-                            'Your data is safe',
-                            'error'
-                        )
-                    }
-                })
+            //     swalWithBootstrapButtons.fire({
+            //         title: 'Are you sure?',
+            //         text: "You won't be able to revert this!",
+            //         type: 'warning',
+            //         showCancelButton: true,
+            //         confirmButtonText: 'Yes, delete it!' ,
+            //         cancelButtonText: 'No, cancel!',
+            //         reverseButtons: true
+            //     }).then((result) => {
+            //         if (result.value) {
+            //             event.preventDefault();
+            //             document.getElementById('delete-form-'+id).submit();
+            //         } else if (
+            //                 /* Read more about handling dismissals below */
+            //         result.dismiss === Swal.DismissReason.cancel
+            //         ) {
+            //             swalWithBootstrapButtons.fire(
+            //                 'Cancelled',
+            //                 'Your data is safe',
+            //                 'error'
+            //             )
+            //         }
+            //     })
+            // }
+
+            function deleteClient(id) {
+            Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+            if (result.value) {
+                // event.preventDefault();
+                document.getElementById('delete-form-'+id).submit();
+                Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+                )
             }
+            });
+        }
         </script>
     @endpush

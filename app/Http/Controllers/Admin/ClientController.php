@@ -21,7 +21,9 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = Client::where('status', true)->get();
+        $clients = Client::latest()
+                           ->where('status', true)
+                           ->get();
         $products = Product::get();
         return view('admin.client.index', compact('clients','products'));
     }
@@ -208,7 +210,7 @@ class ClientController extends Controller
     {
         $client->products()->detach();
         $client->delete();
-        Toastr::success('Client Successfully Deleted','Success');
+        // Toastr::success('Client Successfully Deleted','Success');
         return redirect()->back();
     }
 }

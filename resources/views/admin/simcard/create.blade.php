@@ -12,9 +12,9 @@
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
             <div class="card">
                 <div class="header">
-                    <h2>
-                        ADD SIMCARD TYPE
-                    </h2>
+                    <h4>
+                        Add Simcard Type
+                    </h4>
                 </div>
                 <div class="body">
                     <form  action="{{ route('simcard.store') }}" method="POST">

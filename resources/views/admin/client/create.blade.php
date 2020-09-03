@@ -12,9 +12,9 @@
         <div class="col-lg-8 col-md-12 col-sm-8 col-xs-8">
             <div class="card">
                 <div class="header">
-                    <h2>
-                        ADD NEW CLIENT
-                    </h2>
+                    <h4>
+                        Add Client
+                    </h4>
                 </div>
                 <div class="body">
                     <form method="POST" action="{{ route('client.store') }}" enctype="multipart/form-data">
@@ -50,9 +50,9 @@
                             </div>
                         </div>
                         <div class="form-group form-float">
-                            <div class="form-line{{ $errors->has('products') ? 'focused error' : '' }}">
+                            <div class="{{ $errors->has('products') ? 'focused error' : '' }}">
                                 <label for="products">Select Product</label>
-                                <select name="products[]" id="product" class="form-control show-tick" data-live-search="true" multiple>
+                                <select name="products[]" id="product" class="form-control show-tick " data-live-search="false" multiple>
                                     @foreach($products as $product)
                                         <option value="{{ $product->id }}">{{ $product->name }}</option>
                                     @endforeach
@@ -61,9 +61,9 @@
                         </div>
                         <div class="form-group form-float">
                             <label for="status">Select Status</label>
-                            <select name="status" class="form-control show-tick">
+                            <select name="status" class="form-control show-tick ">
                                 <option value="1">Active</option>
-                                <option value="0">Inactive</option>
+                                {{-- <option value="0">Inactive</option> --}}
                                 <option value="2">POC</option>
                             </select>
                         </div>

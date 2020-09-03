@@ -12,9 +12,9 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2>
+                    <h4>
                         Add Contact
-                    </h2>
+                    </h4>
                 </div>
                 <div class="body">
                     <form  action="{{ route('contact.store') }}" method="POST">
@@ -61,7 +61,7 @@
                                         <div class="col-md-3">
                                             <label for="status">Select Client</label>
                                             <br>
-                                            <select name="clients[]" id="client" class="form-control show-tick" data-live-search="true">
+                                            <select name="clients[]" id="client" class="form-control show-tick" data-live-search="false">
                                                 @foreach($clients as $client)
                                                     <option value="{{ $client->id }}">{{ $client->name }}</option>
                                                 @endforeach

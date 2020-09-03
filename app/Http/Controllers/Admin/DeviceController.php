@@ -210,8 +210,11 @@ class DeviceController extends Controller
     public function destroy(Device $device)
     {
         $device->products()->detach();
+        $device->clients()->detach();
+        $device->simcards()->detach();
+        $device->phones()->detach();
         $device->delete();
-        Toastr::success('Device Successfully Deleted','Success');
+        // Toastr::success('Device Successfully Deleted','Success');
         return redirect()->back();
     }
 

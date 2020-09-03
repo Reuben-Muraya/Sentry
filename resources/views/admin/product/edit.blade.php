@@ -12,9 +12,9 @@
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
             <div class="card">
                 <div class="header">
-                    <h2>
-                        EDIT PRODUCT
-                    </h2>
+                    <h4>
+                        Edit Product
+                    </h4>
                 </div>
                 <div class="body">
                     <form  action="{{ route('product.update',$product->id) }}" method="POST">

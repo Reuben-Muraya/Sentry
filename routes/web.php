@@ -36,6 +36,9 @@ Route::group(['prefix'=>'admin','middleware'=>'auth','namespace'=>'admin'], func
 
     Route::get('status/device', 'DeviceController@status')->name('device.status');
     Route::get('lost/device', 'DeviceController@lost')->name('device.lost');
-
+    
+    Route::get('settings','SettingsController@index')->name('admin.settings');
+    Route::put('profile-update','SettingsController@updateProfile')->name('profile.update');
+    Route::put('password-update','SettingsController@updatePassword')->name('password.update');
 
 });

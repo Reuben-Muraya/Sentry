@@ -28,7 +28,10 @@
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="card">
                                     <div class="header">
-                                        <h2>Devices</h2>
+                                        <h4>
+                                            Devices
+                                            <span class="badge bg-blue">{{ $client->devices->count() }}</span>
+                                        </h4>
                                     </div>
                                     <div class="body">
                                         <div class="table-responsive">
@@ -42,6 +45,7 @@
                                                     <th>PIN No 1</th>
                                                     <th>PIN No 2</th>
                                                     <th>Sentry ID</th>
+                                                    <th>Status</th>
                                                     <th>Product</th>
                                                     <th>Action</th>
                                                 </tr>
@@ -57,8 +61,15 @@
                                                         <td>{{ $device->pin_2 }}</td>
                                                         <td>{{ $device->sentry_id }}</td>
                                                         <td>
+                                                            @if($device->status == true)
+                                                                <span class="badge bg-green">Active</span>
+                                                            @else
+                                                                <span class="badge bg-red">Inactive</span>
+                                                            @endif
+                                                        </td>
+                                                        <td>
                                                         @foreach($device->products as $product)
-                                                            {{ $product->name }}
+                                                            <span class="badge bg-teal">{{ $product->name }}</span>
                                                         @endforeach
                                                         </td>
                                                         <td class="text-center">
@@ -82,7 +93,10 @@
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="card">
                                     <div class="header">
-                                        <h2>Contact List</h2>
+                                        <h4>
+                                            Contact List
+                                            <span class="badge bg-blue">{{ $client->contacts->count() }}</span>
+                                        </h4>
                                     </div>
                                     <div class="body">
                                         <div class="table-responsive">
@@ -137,7 +151,7 @@
                     </div>
                     <div class="body">
                         @foreach($client->products as $product)
-                            <span class="label bg-red">{{ $product->name }}</span>
+                            <span class="label bg-brown">{{ $product->name }}</span>
                         @endforeach
                     </div>
                 </div>

@@ -13,9 +13,9 @@
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
             <div class="card">
                 <div class="header">
-                    <h2>
-                        EDIT CLIENT
-                    </h2>
+                    <h4>
+                        Edit Client
+                    </h4>
                 </div>
                 <div class="body">
                     <form  action="{{ route('client.update',$client->id) }}" method="POST" enctype="multipart/form-data">
@@ -54,7 +54,7 @@
                         <div class="form-group form-float">
                             <div class="form-line{{ $errors->has('products') ? 'focused error' : '' }}">
                                 <label for="product">Select Product</label>
-                                <select name="products[]" id="product" class="form-control show-tick" data-live-search="true" multiple>
+                                <select name="products[]" id="product" class="form-control show-tick" data-live-search="false" multiple>
                                     @foreach($products as $product)
                                         <option
                                              @foreach($client->products as $clientProduct)

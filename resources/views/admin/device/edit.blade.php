@@ -12,9 +12,9 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2>
+                    <h4>
                         Edit Device Details
-                    </h2>
+                    </h4>
                 </div>
                 <div class="body">
                     <form  action="{{ route('device.update',$device->id) }}" method="POST">
@@ -123,7 +123,7 @@
                                         <div class="col-md-3">
                                             <div class="form-line{{ $errors->has('clients') ? 'focused error' : '' }}">
                                             <label for="status">Select Client</label>
-                                                <select name="clients[]" id="client" class="form-control show-tick" data-live-search="true">
+                                                <select name="clients[]" id="client" class="form-control show-tick" data-live-search="false">
                                                     @foreach($clients as $client)
                                                         <option
                                                                 @foreach($device->clients as $deviceClient)
@@ -137,7 +137,7 @@
                                         <div class="col-md-2">
                                             <div class="form-line{{ $errors->has('products') ? 'focused error' : '' }}">
                                             <label for="status">Select Product</label>
-                                                <select name="products[]" id="product" class="form-control show-tick" data-live-search="true">
+                                                <select name="products[]" id="product" class="form-control show-tick" data-live-search="false">
                                                     @foreach($products as $product)
                                                         <option
                                                                 @foreach($device->products as $deviceProduct)
@@ -151,7 +151,7 @@
                                         <div class="col-md-2">
                                             <div class="form-line{{ $errors->has('phones') ? 'focused error' : '' }}">
                                             <label for="status">Select Device Model</label>
-                                                <select name="phones[]" id="phone" class="form-control show-tick" data-live-search="true">
+                                                <select name="phones[]" id="phone" class="form-control show-tick" data-live-search="false">
                                                     @foreach($phones as $phone)
                                                         <option
                                                                 @foreach($device->phones as $devicePhone)
@@ -165,7 +165,7 @@
                                         <div class="col-md-2">
                                             <div class="form-line{{ $errors->has('simcards') ? 'focused error' : '' }}">
                                             <label for="status">Select Simcard Type</label>
-                                                <select name="simcards[]" id="phone" class="form-control show-tick" data-live-search="true">
+                                                <select name="simcards[]" id="phone" class="form-control show-tick" data-live-search="false">
                                                     @foreach($simcards as $simcard)
                                                         <option
                                                                 @foreach($device->simcards as $deviceSimcard)

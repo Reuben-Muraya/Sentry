@@ -3,7 +3,7 @@
     <!-- User Info -->
     <div class="user-info">
         <div class="image">
-            {{--<img src="{{ Storage::disk('public')->url('profile/'.Auth::user()->image) }}" width="48" height="48" alt="User" />--}}
+            <img src="{{ url('storage/profile/'.Auth::user()->image) }}" width="48" height="48" alt="User" />
         </div>
         <div class="info-container">
             <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->username }}</div>
@@ -27,13 +27,13 @@
                     <span>Products</span>
                 </a>
             </li>
-            <li class="{{ Request::is('admin/client*') ? 'active' : '' }}">
+            <li class="{{ Request::is('admin/client*') ? 'active' : '' }} {{ Request::is('admin/status/client*') ? 'active' : '' }} {{ Request::is('admin/poc/client*') ? 'active' : '' }} {{ Request::is('admin/deactivate/client*') ? 'active' : '' }}">
                     <a href="{{ route('client.index') }}">
                         <i class="material-icons">people</i>
                         <span>Clients</span>
                     </a>
                 </li>
-            <li class="{{ Request::is('admin/device*') ? 'active' : '' }}">
+            <li class="{{ Request::is('admin/device*') ? 'active' : '' }} {{ Request::is('admin/status/device*') ? 'active' : '' }} {{ Request::is('admin/lost/device*') ? 'active' : '' }}">
                 <a href="{{ route('device.index') }}">
                     <i class="material-icons">phone_android</i>
                     <span>Devices</span>
@@ -59,12 +59,12 @@
             </li>
                 <li class="header">System</li>
 
-            <!-- <li class="{{-- {{ Request::is('admin/settings*') ? 'active' : '' }}--}}">
-                <a href="{{--{{ route('admin.settings') }}--}}">
+            <li class="{{ Request::is('admin/settings*') ? 'active' : '' }}">
+                <a href="{{ route('admin.settings') }}">
                     <i class="material-icons">settings</i>
                     <span>Settings</span>
                 </a>
-            </li> -->
+            </li>
 
                 <li>
                     <a class="dropdown-item" href="{{ route('logout') }}"

@@ -97,8 +97,11 @@ class SimcardController extends Controller
      */
     public function destroy($id)
     {
-        Simcard::findOrFail($id)->delete();
-        Toastr::success('Simcard Type Successfully Deleted', 'Success');
+        // $simcards = Simcard::findOrFail($id)->delete();
+        // Toastr::success('Simcard Type Successfully Deleted', 'Success');
+        // return redirect()->back();
+        $simcards = Simcard::findOrfail($id);
+        $simcards->delete();
         return redirect()->back();
     }
 }

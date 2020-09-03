@@ -93,10 +93,12 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        Product::findOrFail($id)->delete();
-        Toastr::success('Product Successfully Deleted', 'Success');
+        $product->clients()->detach();
+        $product->devices()->detach();
+        $product->delete();
+        // Toastr::success('Product Successfully Deleted', 'Success');
         return redirect()->back();
     }
 }

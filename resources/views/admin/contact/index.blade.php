@@ -19,10 +19,10 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
                     <div class="header">
-                        <h2>
-                            CONTACT LIST
+                        <h4>
+                            Contact List
                             <span class="badge bg-blue">{{ $contacts->count() }}</span>
-                        </h2>
+                        </h4>
                     </div>
                     <div class="body">
                         <div class="table-responsive">
@@ -30,8 +30,7 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
+                                    <th>Name</th>
                                     <th>Email Address</th>
                                     <th>Phone No. 1</th>
                                     <th>Phone No. 2</th>
@@ -44,14 +43,13 @@
                                 @foreach($contacts as $key=>$contact)
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
-                                        <td>{{ $contact->first_name }}</td>
-                                        <td>{{ $contact->last_name }}</td>
+                                        <td>{{ $contact->first_name }} {{ $contact->last_name }}</td>
                                         <td>{{ $contact->email }}</td>
                                         <td>{{ $contact->phone_1 }}</td>
                                         <td>{{ $contact->phone_2 }}</td>
                                         <td>
                                             @foreach($contact->clients as $client)
-                                                {{ $client->name }}
+                                                <span class="badge bg-indigo">{{ $client->name }}</span>
                                             @endforeach
                                         </td>
                                         <td>{{ $contact->created_at }}</td>
@@ -112,40 +110,61 @@
 
         <!-- Demo Js -->
         <script src="{{ asset('assets/backend/js/demo.js') }}"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8.17.4/dist/sweetalert2.all.min.js"></script>
         <script type="text/javascript">
-            function deleteContact(id) {
-                const swalWithBootstrapButtons = Swal.mixin({
-                    customClass: {
-                        confirmButton: 'btn btn-success' ,
-                        cancelButton: 'btn btn-danger'
-                    },
-                    buttonsStyling: false
-                })
+            // function deleteContact(id) {
+            //     const swalWithBootstrapButtons = Swal.mixin({
+            //         customClass: {
+            //             confirmButton: 'btn btn-success' ,
+            //             cancelButton: 'btn btn-danger'
+            //         },
+            //         buttonsStyling: false
+            //     })
 
-                swalWithBootstrapButtons.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
-                    type: 'warning',
-                    showCancelButton: true,
-                    confirmButtonText: 'Yes, delete it!',
-                    cancelButtonText: 'No, cancel!',
-                    reverseButtons: true
-                }).then((result) => {
-                    if (result.value) {
-                    event.preventDefault();
-                    document.getElementById('delete-form-'+id).submit();
-                } else if (
-                        /* Read more about handling dismissals below */
-                result.dismiss === Swal.DismissReason.cancel
-                ) {
-                    swalWithBootstrapButtons.fire(
-                        'Cancelled',
-                        'Your data is safe',
-                        'error'
-                    )
-                }
-            });
+            //     swalWithBootstrapButtons.fire({
+            //         title: 'Are you sure?',
+            //         text: "You won't be able to revert this!",
+            //         type: 'warning',
+            //         showCancelButton: true,
+            //         confirmButtonText: 'Yes, delete it!',
+            //         cancelButtonText: 'No, cancel!',
+            //         reverseButtons: true
+            //     }).then((result) => {
+            //         if (result.value) {
+            //         event.preventDefault();
+            //         document.getElementById('delete-form-'+id).submit();
+            //     } else if (
+            //             /* Read more about handling dismissals below */
+            //     result.dismiss === Swal.DismissReason.cancel
+            //     ) {
+            //         swalWithBootstrapButtons.fire(
+            //             'Cancelled',
+            //             'Your data is safe',
+            //             'error'
+            //         )
+            //     }
+            // });
+            // }
+
+            function deleteContact(id) {
+            Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+            if (result.value) {
+                // event.preventDefault();
+                document.getElementById('delete-form-'+id).submit();
+                Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+                )
             }
+            });
+        }
         </script>
     @endpush

@@ -12,9 +12,9 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2>
+                    <h4>
                         Edit Contact
-                    </h2>
+                    </h4>
                 </div>
                 <div class="body">
                     <form  action="{{ route('contact.update',$contact->id) }}" method="POST">
@@ -62,7 +62,7 @@
                                             <div class="col-md-3">
                                                 <div class="form-line{{ $errors->has('clients') ? 'focused error' : '' }}">
                                                     <label for="status">Select Client</label>
-                                                    <select name="clients[]" id="client" class="form-control show-tick" data-live-search="true">
+                                                    <select name="clients[]" id="client" class="form-control show-tick" data-live-search="false">
                                                         @foreach($clients as $client)
                                                             <option
                                                                     @foreach($contact->clients as $contactClient)

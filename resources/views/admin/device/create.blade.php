@@ -13,9 +13,9 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2>
-                        ADD Device
-                    </h2>
+                    <h4>
+                        Add Device
+                    </h4>
                 </div>
                 <div class="body">
                     <form  action="{{ route('device.store') }}" method="POST">
@@ -121,7 +121,7 @@
                                         </div>
                                         <div class="col-md-3">
                                             <label for="status">Select Client</label>
-                                            <select name="clients[]" id="client" class="form-control show-tick" data-live-search="true">
+                                            <select name="clients[]" id="client" class="form-control show-tick" data-live-search="false">
                                                 @foreach($clients as $client)
                                                     <option value="{{ $client->id }}">{{ $client->name }}</option>
                                                 @endforeach
@@ -129,7 +129,7 @@
                                         </div>
                                         <div class="col-md-2">
                                             <label for="status">Select Product</label>
-                                            <select name="products[]" id="client" class="form-control show-tick" data-live-search="true">
+                                            <select name="products[]" id="client" class="form-control show-tick" data-live-search="false">
                                                 @foreach($products as $product)
                                                     <option value="{{ $product->id }}">{{ $product->name }}</option>
                                                 @endforeach
@@ -137,7 +137,7 @@
                                         </div>
                                         <div class="col-md-2">
                                             <label for="status">Select Device Model</label>
-                                            <select name="phones[]" id="phone" class="form-control show-tick" data-live-search="true">
+                                            <select name="phones[]" id="phone" class="form-control show-tick" data-live-search="false">
                                                 @foreach($phones as $phone)
                                                     <option value="{{ $phone->id }}">{{ $phone->name }}</option>
                                                 @endforeach
@@ -145,7 +145,7 @@
                                         </div>
                                         <div class="col-md-2">
                                             <label for="status">Select Simcard Type</label>
-                                            <select name="simcards[]" id="simcard" class="form-control show-tick" data-live-search="true">
+                                            <select name="simcards[]" id="simcard" class="form-control show-tick" data-live-search="false">
                                                 @foreach($simcards as $simcard)
                                                     <option value="{{ $simcard->id }}">{{ $simcard->name }}</option>
                                                 @endforeach

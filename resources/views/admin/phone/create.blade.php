@@ -12,9 +12,9 @@
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
             <div class="card">
                 <div class="header">
-                    <h2>
-                        ADD DEVICE MODEL
-                    </h2>
+                    <h4>
+                        Add Device Model
+                    </h4>
                 </div>
                 <div class="body">
                     <form  action="{{ route('phone.store') }}" method="POST">

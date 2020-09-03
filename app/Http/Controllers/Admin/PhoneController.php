@@ -97,8 +97,11 @@ class PhoneController extends Controller
      */
     public function destroy($id)
     {
-        Phone::findOrFail($id)->delete();
-        Toastr::success('Device Model Successfully Deleted', 'Success');
+        // Phone::findOrFail($id)->delete();
+        // Toastr::success('Device Model Successfully Deleted', 'Success');
+        // return redirect()->back();
+        $phones = Phone::findOrfail($id);
+        $phones->delete();
         return redirect()->back();
     }
 }
