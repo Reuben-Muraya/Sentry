@@ -72,6 +72,8 @@
                                 <option  {{ $client->status == 0 ? 'Selected' : '' }} value="0" >Inactive</option>
                                 <option  {{ $client->status == 2 ? 'Selected' : '' }} value="2" >POC</option>
                                 <option  {{ $client->status == 3 ? 'Selected' : '' }} value="3" >Deactivate</option>
+                                <option  {{ $client->status == 4 ? 'Selected' : '' }} value="4" >Dormant</option>
+                                <option  {{ $client->status == 5 ? 'Selected' : '' }} value="5" >Uncoverted POC's</option>
                             </select>
                         </div>
                         <button type="submit" class="btn btn-primary waves-effect">UPDATE</button>

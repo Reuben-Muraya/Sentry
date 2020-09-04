@@ -22,9 +22,17 @@
                 <i class="material-icons">add_alert</i>
                 <span>Clients on POC</span>
             </a>
-            <a class="btn bg-red waves-effect" id="poc" href="{{ route('client.deactivate') }}">
+            <a class="btn bg-red waves-effect" id="deactivate" href="{{ route('client.deactivate') }}">
                 <i class="material-icons">block</i>
                 <span>Deactivated Clients</span>
+            </a>
+            <a class="btn bg-orange waves-effect" id="dormant" href="{{ route('client.dormant') }}">
+                <i class="material-icons">watch_later</i>
+                <span>Dormant Clients</span>
+            </a>
+            <a class="btn bg-indigo waves-effect" id="unc_poc" href="{{ route('client.unconverted_poc') }}">
+                <i class="material-icons">undo</i>
+                <span>Unconverted POC's</span>
             </a>
         </div>
         <!-- Exportable Table -->
@@ -79,7 +87,7 @@
                                             @endif
                                         </td>
                                         <td>{{ $client->devices->count() }}</td>
-                                        <td>{{ $client->created_at }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($client->created_at)->format('d/m/Y H:i:s') }}</td>
                                         <td class="text-center">
                                             <a href="{{ route('client.show',$client->id) }}"
                                                class="btn btn-success waves-effect">

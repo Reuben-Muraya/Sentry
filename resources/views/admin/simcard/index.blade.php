@@ -43,8 +43,8 @@
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $simcard->name }}</td>
                                     <td>{{ $simcard->devices->count() }}</td>
-                                    <td>{{ $simcard->created_at }}</td>
-                                    <td>{{ $simcard->updated_at }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($simcard->created_at)->format('d/m/Y H:i:s') }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($simcard->updated_at)->format('d/m/Y H:i:s') }}</td>
                                     <td class="text-center">
                                         <a href="{{ route('simcard.edit',$simcard->id) }}" class="btn btn-info waves-effect">
                                             <i class="material-icons sm">edit</i>

@@ -64,7 +64,7 @@
                                             @endif
                                         </td>
                                         <td>{{ $client->devices->count() }}</td>
-                                        <td>{{ $client->created_at }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($client->created_at)->format('d/m/Y H:i:s') }}</td>
                                         <td class="text-center">
                                             <a href="{{ route('client.show',$client->id) }}"
                                                class="btn btn-success waves-effect">

@@ -200,6 +200,18 @@ class ClientController extends Controller
         return view('admin.client.deactivated', compact('clients'));
     }
 
+    public function dormant()
+    {
+        $clients = Client::where('status', 4)->get();
+        return view('admin.client.dormant', compact('clients'));
+    }
+
+    public function unconverted_poc()
+    {
+        $clients = Client::where('status', 5)->get();
+        return view('admin.client.unconverted_poc', compact('clients'));
+    }
+
     /**
      * Remove the specified resource from storage.
      *

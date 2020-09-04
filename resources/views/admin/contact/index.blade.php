@@ -52,7 +52,7 @@
                                                 <span class="badge bg-indigo">{{ $client->name }}</span>
                                             @endforeach
                                         </td>
-                                        <td>{{ $contact->created_at }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($contact->created_at)->format('d/m/Y H:i:s') }}</td>
                                         <td class="text-center">
                                             <a href="{{ route('contact.edit',$contact->id) }}" class="btn btn-info waves-effect">
                                                 <i class="material-icons sm">edit</i>

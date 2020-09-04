@@ -24,11 +24,16 @@ class DeviceController extends Controller
         $devices = Device::latest()
             ->where('status', true)
             ->get();
-//        $date = Device::all('date_to_renewal');
-//        $remaining = $date - Carbon::now();
-//        echo $remaining;
-//        $day_remaining = floor($remaining / 86400);
-//        echo "This post remaining $day_remaining days";
+            // $date_to_renewal = Device::get('date_to_renewal');
+            // $date=strtotime($date_to_renewal);
+            // $remaining=time()-$date;
+            // $day_remaining = floor($remaining / 86400);
+            // dd($date_to_renewal);
+    //    $date = Device::all('date_to_renewal');
+    //    $remaining = $date - Carbon::now();
+    //    echo $remaining;
+    //    $day_remaining = floor($remaining / 86400);
+    //    echo "This post remaining $day_remaining days";
         return view('admin.device.index', compact('devices'));
     }
 

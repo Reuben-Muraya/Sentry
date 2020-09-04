@@ -33,6 +33,8 @@ Route::group(['prefix'=>'admin','middleware'=>'auth','namespace'=>'admin'], func
     Route::get('status/client', 'ClientController@status')->name('client.status');
     Route::get('poc/client', 'ClientController@poc')->name('client.poc');
     Route::get('deactivate/client', 'ClientController@deactivate')->name('client.deactivate');
+    Route::get('dormant/client', 'ClientController@dormant')->name('client.dormant');
+    Route::get('unconverted_poc/client', 'ClientController@unconverted_poc')->name('client.unconverted_poc');
 
     Route::get('status/device', 'DeviceController@status')->name('device.status');
     Route::get('lost/device', 'DeviceController@lost')->name('device.lost');

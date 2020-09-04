@@ -18,7 +18,7 @@
                 <div class="card">
                     <div class="header">
                         <h4>
-                            Deactivated Client List
+                            Dormant Client List
                             <span class="badge bg-blue">{{ $clients->count() }}</span>
                         </h4>
                     </div>
@@ -53,14 +53,10 @@
                                             @endforeach
                                         </td>
                                         <td>
-                                            @if($client->status == 1)
+                                            @if($client->status == 4)
+                                                <span class="badge bg-orange">Dormant</span>
+                                            @else
                                                 <span class="badge bg-green">Active</span>
-                                            @elseif($client->status == 0)
-                                                <span class="badge bg-deep-orange">Inactive</span>
-                                            @elseif($client->status == 2)
-                                                <span class="badge bg-purple">POC</span>
-                                            @elseif($client->status == 3)
-                                                <span class="badge bg-red">Deactivated</span>
                                             @endif
                                         </td>
                                         <td>{{ $client->devices->count() }}</td>

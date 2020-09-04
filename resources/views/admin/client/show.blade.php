@@ -29,7 +29,7 @@
                                 <div class="card">
                                     <div class="header">
                                         <h4>
-                                            Devices
+                                            {{ $client->name }} Devices
                                             <span class="badge bg-blue">{{ $client->devices->count() }}</span>
                                         </h4>
                                     </div>
@@ -61,10 +61,12 @@
                                                         <td>{{ $device->pin_2 }}</td>
                                                         <td>{{ $device->sentry_id }}</td>
                                                         <td>
-                                                            @if($device->status == true)
+                                                            @if($device->status == 1)
                                                                 <span class="badge bg-green">Active</span>
-                                                            @else
+                                                            @elseif($device->status == 0)
                                                                 <span class="badge bg-red">Inactive</span>
+                                                            @elseif($device->status == 2)
+                                                                <span class="badge bg-black">Lost</span>
                                                             @endif
                                                         </td>
                                                         <td>

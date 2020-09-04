@@ -123,7 +123,7 @@
                                             <h5>Date To Data Renewal</h5>
                                         </div>
                                         <div class="body" id="result">
-
+                                            <p id="days"></p>
                                         </div>
                                     </div>
                                 </div>
@@ -135,10 +135,12 @@
                                             <h5>Status</h5>
                                         </div>
                                         <div class="body">
-                                            @if($device->status == true)
+                                            @if($device->status == 1)
                                                 <span class="badge bg-green">Active</span>
-                                            @else
+                                            @elseif($device->status == 0)
                                                 <span class="badge bg-red">Inactive</span>
+                                            @elseif($device->status == 2)
+                                                <span class="badge bg-black">Lost</span>
                                             @endif
                                         </div>
                                     </div>
@@ -221,4 +223,29 @@
 <script src="{{ asset('assets/backend/plugins/bootstrap-select/js/bootstrap-select.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/i18n/defaults-*.min.js"></script>
+<script>
+
+var countDownDate = new Date("Jul 25, 2021 16:37:52").getTime();
+
+// Run myfunc every second
+var myfunc = setInterval(function() {
+
+var now = new Date().getTime();
+var timeleft = countDownDate - now;
+    
+// Calculating the days, hours, minutes and seconds left
+var days = Math.floor(timeleft / (1000 * 60 * 60 * 24));
+
+// Result is output to the specific element
+document.getElementById("days").innerHTML = days + "d "
+
+    
+// Display the message when countdown is over
+if (timeleft < 0) {
+    clearInterval(myfunc);
+    document.getElementById("days").innerHTML = ""
+    
+}
+}, 1000);
+</script>
 @endpush

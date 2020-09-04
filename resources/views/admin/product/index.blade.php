@@ -43,8 +43,8 @@
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $product->name }}</td>
                                     <td>{{ $product->clients->count() }}</td>
-                                    <td>{{ $product->created_at }}</td>
-                                    <td>{{ $product->updated_at }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($product->created_at)->format('d/m/Y H:i:s') }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($product->updated_at)->format('d/m/Y H:i:s') }}</td>
                                     <td class="text-center">
                                         <a href="{{ route('product.edit',$product->id) }}" class="btn btn-info waves-effect">
                                             <i class="material-icons sm">edit</i>

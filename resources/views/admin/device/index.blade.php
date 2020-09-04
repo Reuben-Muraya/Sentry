@@ -48,9 +48,9 @@
                                     <th>Model</th>
                                     <th>Simcard</th>
                                     <th>Sentry</th>
-                                    <th>Color</th>
+                                    {{-- <th>Color</th> --}}
                                     <th>Date To Data Renewal</th>
-                                    {{--<th>Days to Renewal</th>--}}
+                                    <th>Days to Renewal</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -93,19 +93,19 @@
                                             @endforeach
                                         </td>
                                         <td>{{ $device->sentry_id }}</td>
-                                        <td>{{ $device->color }}</td>
-                                        <td>{{ \Carbon\Carbon::parse($device->date_to_renewal)->format('d/m/Y') }}</td>
-                                        {{--<td>{{ $device->color }}</td>--}}
+                                        {{-- <td>{{ $device->color }}</td> --}}
+                                        <td>{{ \Carbon\Carbon::parse($device->created_at)->format('d/m/Y') }}</td>
+                                        <td id="days"></td>
                                         <td class="text-center">
                                             <a href="{{ route('device.show',$device->id) }}"
-                                               class="btn btn-success waves-effect">
-                                                <i class="material-icons sm">visibility</i>
+                                               class="btn btn-success" style="padding: 2px 3px;">
+                                                <i class="material-icons">visibility</i>
                                             </a>
                                             <a href="{{ route('device.edit',$device->id) }}"
-                                                      class="btn btn-info waves-effect">
-                                                <i class="material-icons sm">edit</i>
+                                                      class="btn btn-info" style="padding: 2px 3px;">
+                                                <i class="material-icons">edit</i>
                                             </a>
-                                            <button class="btn btn-danger waves-effect" type="button"
+                                            {{-- <button class="btn btn-danger waves-effect" type="button"
                                                     onclick="deleteDevice({{ $device->id }})">
                                                 <i class="material-icons">delete</i>
                                             </button>
@@ -114,7 +114,14 @@
                                                   style="display: none;">
                                                 @csrf
                                                 @method('DELETE')
-                                            </form>
+                                            </form> --}}
+                                            <p-button class="btn btn-danger" type="submit" style="padding: 2px 3px;" onclick="deleteDevice({{ $device->id }})">
+                                                <i  class="material-icons" [ngClass]="{'active': pinned}">delete</i>
+                                              </p-button>
+                                              <form id="delete-form-{{ $device->id }}" action="{{ route('device.destroy',$device->id) }}" method="POST" style="display: none;">
+                                                @csrf
+                                                @method('DELETE')
+                                              </form>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -216,5 +223,7 @@
             }
             });
         }
+
+       
         </script>
     @endpush

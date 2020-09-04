@@ -40,8 +40,8 @@
                                         <td>{{ $key + 1 }}</td>
                                         <td>{{ $phone->name }}</td>
                                         <td>{{ $phone->devices->count() }}</td>
-                                        <td>{{ $phone->created_at }}</td>
-                                        <td>{{ $phone->updated_at }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($phone->created_at)->format('d/m/Y H:i:s') }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($phone->updated_at)->format('d/m/Y H:i:s') }}</td>
                                         <td class="text-center">
                                             <a href="{{ route('phone.edit',$phone->id) }}" class="btn btn-info waves-effect">
                                                 <i class="material-icons sm">edit</i>

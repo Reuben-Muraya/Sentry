@@ -27,12 +27,29 @@
                     <span>Products</span>
                 </a>
             </li>
-            <li class="{{ Request::is('admin/client*') ? 'active' : '' }} {{ Request::is('admin/status/client*') ? 'active' : '' }} {{ Request::is('admin/poc/client*') ? 'active' : '' }} {{ Request::is('admin/deactivate/client*') ? 'active' : '' }}">
+            {{-- <li class="{{ Request::is('admin/client*') ? 'active' : '' }} {{ Request::is('admin/status/client*') ? 'active' : '' }} {{ Request::is('admin/poc/client*') ? 'active' : '' }} {{ Request::is('admin/deactivate/client*') ? 'active' : '' }} {{ Request::is('admin/dormant/client*') ? 'active' : '' }} {{ Request::is('admin/unconverted_poc/client*') ? 'active' : '' }}">
+                <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block toggled">
+                    <i class="material-icons">people</i>
+                    <span>Clients</span>
+                </a>
+                <ul class="ml-menu" style="display: block;">
+                    <li>
+                        <a href="{{ route('client.create') }}" class=" waves-effect waves-block">Add Client</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('client.status') }}" class=" waves-effect waves-block">Inactive Clients</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('client.poc') }}" class=" waves-effect waves-block">POC's Clients</a>
+                    </li>
+                </ul>
+            </li> --}}
+            <li class="{{ Request::is('admin/client*') ? 'active' : '' }} {{ Request::is('admin/status/client*') ? 'active' : '' }} {{ Request::is('admin/poc/client*') ? 'active' : '' }} {{ Request::is('admin/deactivate/client*') ? 'active' : '' }} {{ Request::is('admin/dormant/client*') ? 'active' : '' }} {{ Request::is('admin/unconverted_poc/client*') ? 'active' : '' }}">
                     <a href="{{ route('client.index') }}">
                         <i class="material-icons">people</i>
                         <span>Clients</span>
                     </a>
-                </li>
+            </li>
             <li class="{{ Request::is('admin/device*') ? 'active' : '' }} {{ Request::is('admin/status/device*') ? 'active' : '' }} {{ Request::is('admin/lost/device*') ? 'active' : '' }}">
                 <a href="{{ route('device.index') }}">
                     <i class="material-icons">phone_android</i>
