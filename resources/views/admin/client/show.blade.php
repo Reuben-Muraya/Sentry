@@ -9,7 +9,7 @@
 
 @section('content')
     <div class="container-fluid">
-        <a href="{{ route('client.index') }}" class="btn btn-danger waves-effect">BACK</a>
+        <a href="{{ URL::previous() }}" class="btn btn-danger waves-effect">BACK</a>
         <a href="{{ route('client.edit',$client->id) }}" class="btn btn-info waves-effect">EDIT</a>
         <br>
         <br>

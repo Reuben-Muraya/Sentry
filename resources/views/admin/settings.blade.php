@@ -98,6 +98,7 @@
                                 <div class="row clearfix">
                                     <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5">
                                         <button type="submit" class="btn btn-primary m-t-15 waves-effect">UPDATE</button>
+                                        {{-- <a href="{{ URL::previous() }}" class="btn btn-danger waves-effect">BACK</a> --}}
                                     </div>
                                 </div>
                             </form>
@@ -145,6 +146,7 @@
                                 <div class="row clearfix">
                                     <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5">
                                         <button type="submit" class="btn btn-primary m-t-15 waves-effect">UPDATE</button>
+                                        {{-- <a href="{{ URL::previous() }}" class="btn btn-danger waves-effect">BACK</a> --}}
                                     </div>
                                 </div>
                             </form>

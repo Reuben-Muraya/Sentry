@@ -8,7 +8,7 @@
 
 @section('content')
     <div class="container-fluid">
-        <a href="{{ route('device.index') }}" class="btn btn-danger waves-effect">BACK</a>
+        <a href="{{ URL::previous() }}" class="btn btn-danger waves-effect">BACK</a>
         <br>
         <br>
         <!-- Exportable Table -->
@@ -36,7 +36,7 @@
                                     <th>Model</th>
                                     <th>Simcard</th>
                                     <th>Sentry</th>
-                                    <th>Color</th>
+                                    {{-- <th>Color</th> --}}
                                     <th>Date To Data Renewal</th>
                                     <th>Days to Renewal</th>
                                     <th>Action</th>
@@ -81,7 +81,7 @@
                                             @endforeach
                                         </td>
                                         <td>{{ $device->sentry_id }}</td>
-                                        <td>{{ $device->color }}</td>
+                                        {{-- <td>{{ $device->color }}</td> --}}
                                         <td>{{ \Carbon\Carbon::parse($device->created_at)->format('d/m/Y') }}</td>
                                         <td></td>
                                         <td class="text-center">

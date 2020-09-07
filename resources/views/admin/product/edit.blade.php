@@ -27,7 +27,7 @@
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary waves-effect">UPDATE</button>
-                        <a href="{{ route('product.index') }}" class="btn btn-danger waves-effect">BACK</a>
+                        <a href="{{ URL::previous() }}" class="btn btn-danger waves-effect">BACK</a>
                     </form>
                 </div>
             </div>

@@ -93,6 +93,19 @@
                  </div>
                 </div>
             </a>
+            <a href="{{ route('device.lost') }}">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                 <div class="info-box-3 bg-black hover-zoom-effect">
+                    <div class="icon">
+                        <i class="material-icons">phone_android</i>
+                    </div>
+                    <div class="content">
+                        <div class="text">LOST DEVICES</div>
+                        <div class="number">{{ $lost_devices }}</div>
+                    </div>
+                 </div>
+                </div>
+            </a>
             <a href="{{ route('contact.index') }}">
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                  <div class="info-box-3 bg-blue-grey hover-zoom-effect">
@@ -115,6 +128,32 @@
                     <div class="content">
                         <div class="text">PRODUCTS</div>
                         <div class="number">{{ $product_count->count() }}</div>
+                    </div>
+                 </div>
+                </div>
+            </a>
+            <a href="{{ route('client.dormant') }}">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                 <div class="info-box-3 bg-orange hover-zoom-effect">
+                    <div class="icon">
+                        <i class="material-icons">people</i>
+                    </div>
+                    <div class="content">
+                        <div class="text">Dormant Clients</div>
+                        <div class="number">{{ $dormant }}</div>
+                    </div>
+                 </div>
+                </div>
+            </a>
+            <a href="{{ route('client.unconverted_poc') }}">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                 <div class="info-box-3 bg-indigo hover-zoom-effect">
+                    <div class="icon">
+                        <i class="material-icons">people</i>
+                    </div>
+                    <div class="content">
+                        <div class="text">Unconverted POC's</div>
+                        <div class="number">{{ $unconverted_poc }}</div>
                     </div>
                  </div>
                 </div>

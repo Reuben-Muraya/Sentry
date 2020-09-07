@@ -8,7 +8,7 @@
 
 @section('content')
     <div class="container-fluid">
-        <a href="{{ route('device.index') }}" class="btn btn-danger waves-effect">BACK</a>
+        <a href="{{ URL::previous() }}" class="btn btn-danger waves-effect">BACK</a>
         <a href="{{ route('device.edit', $device->id) }}" class="btn btn-info waves-effect">EDIT</a>
         <br>
         <br>
