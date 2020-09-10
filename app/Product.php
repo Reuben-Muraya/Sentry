@@ -15,4 +15,9 @@ class Product extends Model
     {
         return $this->belongsToMany('App\Device')->withTimestamps();
     }
+
+    public function sites()
+    {
+        return $this->belongsToMany('App\Site')->withTimestamps();
+    }
 }

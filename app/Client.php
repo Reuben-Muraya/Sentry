@@ -20,4 +20,9 @@ class Client extends Model
     {
         return $this->belongsToMany('App\Contact')->withTimestamps();
     }
+
+    public function sites()
+    {
+        return $this->belongsToMany('App\Site')->withTimestamps();
+    }
 }

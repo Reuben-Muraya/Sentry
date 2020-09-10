@@ -10,10 +10,10 @@
 @section('content')
     <div class="container-fluid">
         <div class="block-header">
-            <h2>DASHBOARD</h2>
+            <h4>DASHBOARD</h4>
         </div>
         <div class="row clearfix">
-            <a href="{{ route('client.index') }}">
+            <a href="#">
                 <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
                     <div class="info-box-3 bg-green hover-zoom-effect">
                         <div class="icon">
@@ -139,7 +139,7 @@
                         <i class="material-icons">people</i>
                     </div>
                     <div class="content">
-                        <div class="text">Dormant Clients</div>
+                        <div class="text">DORMANT CLIENTS</div>
                         <div class="number">{{ $dormant }}</div>
                     </div>
                  </div>
@@ -152,72 +152,72 @@
                         <i class="material-icons">people</i>
                     </div>
                     <div class="content">
-                        <div class="text">Unconverted POC's</div>
+                        <div class="text">UNCOVERTED POC's</div>
                         <div class="number">{{ $unconverted_poc }}</div>
                     </div>
                  </div>
                 </div>
             </a>
         </div>
-        {{--<div class="row clearfix">--}}
-            {{--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">--}}
-                {{--<div class="card">--}}
-                    {{--<div class="header">--}}
-                        {{--<h2>--}}
-                            {{--RECENT CLIENT LIST--}}
-                            {{--<span class="badge bg-blue">{{ $recent_clients->count() }}</span>--}}
-                        {{--</h2>--}}
-                    {{--</div>--}}
-                {{--<div class="body">--}}
-            {{--<div class="table-responsive">--}}
-                {{--<table class="table table-bordered table-striped table-hover dataTable js-exportable">--}}
-                    {{--<thead>--}}
-                    {{--<tr>--}}
-                        {{--<th>ID</th>--}}
-                        {{--<th>Name</th>--}}
-                        {{--<th>Products</th>--}}
-                        {{--<th>Devices</th>--}}
-                        {{--<th>Status</th>--}}
-                        {{--<th>Action</th>--}}
-                    {{--</tr>--}}
-                    {{--</thead>--}}
-                    {{--<tbody>--}}
-                    {{--@foreach($recent_clients as $key=>$client)--}}
-                        {{--<tr>--}}
-                            {{--<td>{{ $key + 1 }}</td>--}}
-                            {{--<td>{{ $client->name }}</td>--}}
-                            {{--<td>{{ $client->products->count() }}</td>--}}
-                            {{--<td>{{ $client->devices->count() }}</td>--}}
-                            {{--<td>--}}
-                                {{--@if($client->status == 1)--}}
-                                    {{--<span class="badge bg-green">Active</span>--}}
-                                {{--@elseif($client->status == 0)--}}
-                                    {{--<span class="badge bg-deep-orange">Inactive</span>--}}
-                                {{--@elseif($client->status == 2)--}}
-                                    {{--<span class="badge bg-purple">POC</span>--}}
-                                {{--@elseif($client->status == 3)--}}
-                                    {{--<span class="badge bg-red">Deactivated</span>--}}
-                                {{--@endif--}}
-                            {{--</td>--}}
-                            {{--<td class="text-center">--}}
-                                {{--<a href="{{ route('client.show',$client->id) }}"--}}
-                                   {{--class="btn btn-success waves-effect">--}}
-                                    {{--<i class="material-icons sm">visibility</i>--}}
-                                {{--</a>--}}
-                                {{--<a href="{{ route('client.edit',$client->id) }}"--}}
-                                   {{--class="btn btn-info waves-effect">--}}
-                                    {{--<i class="material-icons sm">edit</i>--}}
-                                {{--</a>--}}
-                            {{--</td>--}}
-                        {{--</tr>--}}
-                    {{--@endforeach--}}
-                    {{--</tbody>--}}
-                {{--</table>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-        {{--</div>--}}
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            RECENT CLIENT LIST
+                            <span class="badge bg-blue">{{ $recent_clients->count() }}</span>
+                        </h2>
+                    </div>
+                <div class="body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Products</th>
+                        <th>Devices</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($recent_clients as $key=>$client)
+                        <tr>
+                            <td>{{ $key + 1 }}</td>
+                            <td>{{ $client->name }}</td>
+                            <td>
+                                @foreach($client->products as $product)
+                                  <span class="badge bg-teal">{{ $product->name }}</span>
+                                @endforeach
+                            </td>
+                            <td>{{ $client->devices->count() }}</td>
+                            <td>
+                                @if($client->status == 1)
+                                    <span class="badge bg-green">Active</span>
+                                @elseif($client->status == 2)
+                                    <span class="badge bg-purple">POC</span>
+                                @endif
+                            </td>
+                            <td class="text-center">
+                                <a href="{{ route('client.show',$client->id) }}"
+                                   class="btn btn-success waves-effect">
+                                    <i class="material-icons sm">visibility</i>
+                                </a>
+                                <a href="{{ route('client.edit',$client->id) }}"
+                                   class="btn btn-info waves-effect">
+                                    <i class="material-icons sm">edit</i>
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+                </div>
+            </div>
+        </div>
 
         <div class="row-clearfix">
             <!-- Donut Chart -->

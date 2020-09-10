@@ -34,6 +34,7 @@
                                     <th>Description</th>
                                     <th>Products</th>
                                     <th>Status</th>
+                                    <th>Sites</th>
                                     <th>Devices</th>
                                     <th>Created At</th>
                                     <th>Action</th>
@@ -59,6 +60,7 @@
                                                 <span class="badge bg-green">Active</span>
                                             @endif
                                         </td>
+                                        <td><span class="badge bg-blue">{{ $client->sites->count() }}</span></td>
                                         <td>{{ $client->devices->count() }}</td>
                                         <td>{{ \Carbon\Carbon::parse($client->created_at)->format('d/m/Y H:i:s') }}</td>
                                         <td class="text-center">

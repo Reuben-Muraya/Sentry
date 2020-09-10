@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
 
-@section('title', 'Client')
+@section('title', 'Sites')
 
 @push('css')
 <link href="{{ asset('assets/backend/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css') }}"
@@ -9,40 +9,17 @@
 
 @section('content')
     <div class="container-fluid">
-        <div class="block-header">
-            <a class="btn bg-blue waves-effect" href="{{ route('client.create') }}">
-                <i class="material-icons">person_add</i>
-                <span>Add New Client</span>
-            </a>
-            <a class="btn bg-deep-orange waves-effect" href="{{ route('client.status') }}">
-                <i class="material-icons">report</i>
-                <span>Inactive Clients</span>
-            </a>
-            <a class="btn bg-purple waves-effect" id="poc" href="{{ route('client.poc') }}">
-                <i class="material-icons">add_alert</i>
-                <span>Clients on POC</span>
-            </a>
-            <a class="btn bg-red waves-effect" id="deactivate" href="{{ route('client.deactivate') }}">
-                <i class="material-icons">block</i>
-                <span>Deactivated Clients</span>
-            </a>
-            <a class="btn bg-orange waves-effect" id="dormant" href="{{ route('client.dormant') }}">
-                <i class="material-icons">watch_later</i>
-                <span>Dormant Clients</span>
-            </a>
-            <a class="btn bg-indigo waves-effect" id="unc_poc" href="{{ route('client.unconverted_poc') }}">
-                <i class="material-icons">undo</i>
-                <span>Unconverted POC's</span>
-            </a>
-        </div>
+        <a href="{{ URL::previous() }}" class="btn btn-danger waves-effect">BACK</a>
+        <br>
+        <br>
         <!-- Exportable Table -->
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
                     <div class="header">
                         <h4>
-                            Active Client List
-                            <span class="badge bg-blue">{{ $clients->count() }}</span>
+                            Inactive Client Sites List
+                            <span class="badge bg-blue">{{ $sites->count() }}</span>
                         </h4>
                     </div>
                     <div class="body">
@@ -52,59 +29,59 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
+                                    <th>Location</th>
                                     <th>Phone</th>
                                     <th>Email Address</th>
-                                    <th>Description</th>
+                                    <th>Client</th>
                                     <th>Products</th>
                                     <th>Status</th>
-                                    <th>Sites</th>
-                                    <th>Devices</th>
+                                    {{-- <th>Devices</th> --}}
                                     <th>Created At</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($clients as $key=>$client)
+                                @foreach($sites as $key=>$site)
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
-                                        <td>{{ $client->name }}</td>
-                                        <td>{{ $client->phone }}</td>
-                                        <td>{{ $client->email }}</td>
-                                        <td>{{ $client->about }}</td>
+                                        <td>{{ $site->name }}</td>
+                                        <td>{{ $site->location }}</td>
+                                        <td>{{ $site->phone }}</td>
+                                        <td>{{ $site->email }}</td>
                                         <td>
-                                            @foreach($client->products as $product)
+                                            @foreach($site->clients as $client)
+                                                <span class="badge bg-indigo">{{ $client->name }}</span>
+                                            @endforeach
+                                        </td>
+                                        <td>
+                                            @foreach($site->products as $product)
                                                 <span class="badge bg-teal">{{ $product->name }}</span>
                                             @endforeach
                                         </td>
                                         <td>
-                                            @if($client->status == 1)
+                                            @if($site->status == 1)
                                                 <span class="badge bg-green">Active</span>
-                                            @elseif($client->status == 0)
+                                            @elseif($site->status == 0)
                                                 <span class="badge bg-deep-orange">Inactive</span>
-                                            @elseif($client->status == 2)
-                                                <span class="badge bg-purple">POC</span>
-                                            @elseif($client->status == 3)
-                                                <span class="badge bg-red">Deactivated</span>
                                             @endif
                                         </td>
-                                        <td><span class="badge bg-blue">{{ $client->sites->count() }}</span></td>
-                                        <td>{{ $client->devices->count() }}</td>
-                                        <td>{{ \Carbon\Carbon::parse($client->created_at)->format('d/m/Y H:i:s') }}</td>
+                                        {{-- <td>{{ $site->devices->count() }}</td> --}}
+                                        <td>{{ \Carbon\Carbon::parse($site->created_at)->format('d/m/Y H:i:s') }}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('client.show',$client->id) }}"
+                                            {{-- <a href="{{ route('site.show',$site->id) }}"
                                                class="btn btn-success waves-effect">
                                                 <i class="material-icons sm">visibility</i>
-                                            </a>
-                                            <a href="{{ route('client.edit',$client->id) }}"
+                                            </a> --}}
+                                            <a href="{{ route('site.edit',$site->id) }}"
                                                class="btn btn-info waves-effect">
                                                 <i class="material-icons sm">edit</i>
                                             </a>
                                             <button class="btn btn-danger waves-effect" type="button"
-                                                    onclick="deleteClient({{ $client->id }})">
+                                                    onclick="deleteSite({{ $site->id }})">
                                                 <i class="material-icons">delete</i>
                                             </button>
-                                            <form id="delete-form-{{ $client->id }}"
-                                                  action="{{ route('client.destroy',$client->id) }}" method="POST"
+                                            <form id="delete-form-{{ $site->id }}"
+                                                  action="{{ route('site.destroy',$site->id) }}" method="POST"
                                                   style="display: none;">
                                                 @csrf
                                                 @method('DELETE')
@@ -190,7 +167,7 @@
             //     })
             // }
 
-            function deleteClient(id) {
+            function deleteSite(id) {
             Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",

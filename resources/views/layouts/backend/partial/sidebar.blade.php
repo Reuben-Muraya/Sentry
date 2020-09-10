@@ -50,6 +50,12 @@
                         <span>Clients</span>
                     </a>
             </li>
+            <li class="{{ Request::is('admin/site*') ? 'active' : '' }} {{ Request::is('admin/status/site*') ? 'active' : '' }} {{ Request::is('admin/poc/site*') ? 'active' : '' }} {{ Request::is('admin/deactivate/site*') ? 'active' : '' }} {{ Request::is('admin/dormant/site*') ? 'active' : '' }}">
+                    <a href="{{ route('site.index') }}">
+                        <i class="material-icons">place</i>
+                        <span>Client Sites</span>
+                    </a>
+            </li>
             <li class="{{ Request::is('admin/device*') ? 'active' : '' }} {{ Request::is('admin/status/device*') ? 'active' : '' }} {{ Request::is('admin/lost/device*') ? 'active' : '' }}">
                 <a href="{{ route('device.index') }}">
                     <i class="material-icons">phone_android</i>

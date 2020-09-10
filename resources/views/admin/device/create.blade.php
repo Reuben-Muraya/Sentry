@@ -39,7 +39,7 @@
                                 <div class="col-md-4">
                                     <div class="input-group">
                                         <div class="form-line">
-                                            <input type="text" name="imei" class="form-control date" placeholder="Imei No">
+                                            <input type="text" name="imei" class="form-control date" placeholder="Imei No / Serial No.">
                                         </div>
                                     </div>
                                 </div>
