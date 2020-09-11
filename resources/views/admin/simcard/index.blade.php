@@ -42,7 +42,7 @@
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $simcard->name }}</td>
-                                    <td>{{ $simcard->devices->count() }}</td>
+                                    <td><span class="badge bg-indigo">{{ $simcard->devices->count() }}</span></td>
                                     <td>{{ \Carbon\Carbon::parse($simcard->created_at)->format('d/m/Y H:i:s') }}</td>
                                     <td>{{ \Carbon\Carbon::parse($simcard->updated_at)->format('d/m/Y H:i:s') }}</td>
                                     <td class="text-center">

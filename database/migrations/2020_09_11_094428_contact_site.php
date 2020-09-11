@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class SiteProduct extends Migration
+class ContactSite extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class SiteProduct extends Migration
      */
     public function up()
     {
-        Schema::create('product_site', function (Blueprint $table) {
+        Schema::create('contact_site', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('site_id');
-            $table->integer('product_id');
+            $table->integer('contact_id');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class SiteProduct extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_site');
+        Schema::dropIfExists('contact_site');
     }
 }

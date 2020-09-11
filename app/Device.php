@@ -11,6 +11,11 @@ class Device extends Model
         return $this->belongsToMany('App\Client')->withTimestamps();
     }
 
+    public function sites()
+    {
+        return $this->belongsToMany('App\Site')->withTimestamps();
+    }
+
     public function products()
     {
         return $this->belongsToMany('App\Product')->withTimestamps();
@@ -25,4 +30,5 @@ class Device extends Model
     {
         return $this->belongsToMany('App\Simcard')->withTimestamps();
     }
+    
 }

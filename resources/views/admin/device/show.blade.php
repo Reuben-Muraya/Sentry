@@ -159,6 +159,18 @@
                                 </div>
                                 <div class="col-lg-3 col-md- col-sm-3 col-xs-3">
                                     <div class="card">
+                                        <div class="header bg-pink">
+                                            <h5>Site</h5>
+                                        </div>
+                                        <div class="body">
+                                            @foreach($device->sites as $site)
+                                               <span class="badge bg-blue">{{ $site->name }}</span>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md- col-sm-3 col-xs-3">
+                                    <div class="card">
                                         <div class="header bg-purple">
                                             <h5>Product</h5>
                                         </div>

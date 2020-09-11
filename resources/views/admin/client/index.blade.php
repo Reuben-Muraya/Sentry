@@ -31,7 +31,7 @@
                 <span>Dormant Clients</span>
             </a>
             <a class="btn bg-indigo waves-effect" id="unc_poc" href="{{ route('client.unconverted_poc') }}">
-                <i class="material-icons">undo</i>
+                <i class="material-icons">reply</i>
                 <span>Unconverted POC's</span>
             </a>
         </div>
@@ -70,7 +70,7 @@
                                         <td>{{ $client->name }}</td>
                                         <td>{{ $client->phone }}</td>
                                         <td>{{ $client->email }}</td>
-                                        <td>{{ $client->about }}</td>
+                                        <td>{{ str_limit($client->about, '20') }}</td>
                                         <td>
                                             @foreach($client->products as $product)
                                                 <span class="badge bg-teal">{{ $product->name }}</span>
@@ -88,7 +88,7 @@
                                             @endif
                                         </td>
                                         <td><span class="badge bg-blue">{{ $client->sites->count() }}</span></td>
-                                        <td>{{ $client->devices->count() }}</td>
+                                        <td><span class="badge bg-blue-grey">{{ $client->devices->count() }}</span></td>
                                         <td>{{ \Carbon\Carbon::parse($client->created_at)->format('d/m/Y H:i:s') }}</td>
                                         <td class="text-center">
                                             <a href="{{ route('client.show',$client->id) }}"

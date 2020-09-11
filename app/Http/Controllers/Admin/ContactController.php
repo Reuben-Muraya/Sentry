@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Site;
 use App\Client;
 use App\Contact;
-use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 
 class ContactController extends Controller
 {
@@ -19,7 +20,8 @@ class ContactController extends Controller
     {
         $contacts = Contact::latest()->get();
         $clients = Client::all();
-        return view('admin.contact.index', compact('contacts', 'clients'));
+        $sites = Site::all();
+        return view('admin.contact.index', compact('contacts', 'clients', 'sites'));
     }
 
     /**
@@ -30,7 +32,8 @@ class ContactController extends Controller
     public function create()
     {
         $clients = Client::all();
-        return view('admin.contact.create', compact('clients'));
+        $sites = Site::all();
+        return view('admin.contact.create', compact('clients', 'sites'));
     }
 
     /**
@@ -60,6 +63,7 @@ class ContactController extends Controller
         $contact->save();
 
         $contact->clients()->attach($request->clients);
+        $contact->sites()->attach($request->sites);
 
         Toastr::success('Contact Created Successfully','Success');
         return redirect()->route('contact.index');
@@ -85,8 +89,9 @@ class ContactController extends Controller
     public function edit($id)
     {
         $clients = Client::all();
+        $sites = Site::all();
         $contact = Contact::findOrFail($id);
-        return view('admin.contact.edit', compact('clients', 'contact'));
+        return view('admin.contact.edit', compact('clients','sites', 'contact'));
     }
 
     /**
@@ -105,6 +110,7 @@ class ContactController extends Controller
             'phone_1' => '',
             'phone_2' => '',
             'client' => '',
+            'site' => '',
         ]);
 
         $contact = Contact::findOrFail($id);
@@ -116,6 +122,7 @@ class ContactController extends Controller
         $contact->save();
 
         $contact->clients()->sync($request->clients);
+        $contact->sites()->sync($request->sites);
 
         Toastr::success('Contact Updated Successfully','Success');
         return redirect()->route('contact.index');

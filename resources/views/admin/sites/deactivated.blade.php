@@ -35,7 +35,7 @@
                                     <th>Client</th>
                                     <th>Products</th>
                                     <th>Status</th>
-                                    {{-- <th>Devices</th> --}}
+                                    <th>Devices</th>
                                     <th>Created At</th>
                                     <th>Action</th>
                                 </tr>
@@ -65,13 +65,13 @@
                                                 <span class="badge bg-red">Deactivated</span>
                                             @endif
                                         </td>
-                                        {{-- <td>{{ $site->devices->count() }}</td> --}}
+                                        <td><span class="badge bg-blue-grey">{{ $site->devices->count() }}</span></td>
                                         <td>{{ \Carbon\Carbon::parse($site->created_at)->format('d/m/Y H:i:s') }}</td>
                                         <td class="text-center">
-                                            {{-- <a href="{{ route('site.show',$site->id) }}"
-                                               class="btn btn-success waves-effect">
-                                                <i class="material-icons sm">visibility</i>
-                                            </a> --}}
+                                            <a href="{{ route('site.show',$site->id) }}"
+                                                class="btn btn-success waves-effect">
+                                                 <i class="material-icons sm">visibility</i>
+                                             </a>
                                             <a href="{{ route('site.edit',$site->id) }}"
                                                class="btn btn-info waves-effect">
                                                 <i class="material-icons sm">edit</i>

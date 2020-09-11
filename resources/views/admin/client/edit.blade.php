@@ -54,7 +54,7 @@
                         <div class="form-group form-float">
                             <div class="form-line{{ $errors->has('products') ? 'focused error' : '' }}">
                                 <label for="product">Select Product</label>
-                                <select name="products[]" id="product" class="form-control show-tick" data-live-search="false" multiple>
+                                <select name="products[]" id="product" class="form-control show-tick" data-live-search="false" multiple required>
                                     @foreach($products as $product)
                                         <option
                                              @foreach($client->products as $clientProduct)

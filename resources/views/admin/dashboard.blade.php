@@ -158,6 +158,71 @@
                  </div>
                 </div>
             </a>
+            <a href="{{ route('site.index') }}">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                 <div class="info-box-3 bg-green hover-zoom-effect">
+                    <div class="icon">
+                        <i class="material-icons">home</i>
+                    </div>
+                    <div class="content">
+                        <div class="text">ACTIVE SITES</div>
+                        <div class="number">{{ $active_sites }}</div>
+                    </div>
+                 </div>
+                </div>
+            </a>
+            <a href="{{ route('site.status') }}">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                 <div class="info-box-3 bg-deep-orange hover-zoom-effect">
+                    <div class="icon">
+                        <i class="material-icons">home</i>
+                    </div>
+                    <div class="content">
+                        <div class="text">INACTIVE SITES</div>
+                        <div class="number">{{ $inactive_sites }}</div>
+                    </div>
+                 </div>
+                </div>
+            </a>
+            <a href="{{ route('site.deactivate') }}">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                 <div class="info-box-3 bg-red hover-zoom-effect">
+                    <div class="icon">
+                        <i class="material-icons">home</i>
+                    </div>
+                    <div class="content">
+                        <div class="text">DEACTIVATED SITES</div>
+                        <div class="number">{{ $deactivated_sites }}</div>
+                    </div>
+                 </div>
+                </div>
+            </a>
+            <a href="{{ route('site.poc') }}">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                 <div class="info-box-3 bg-red hover-zoom-effect">
+                    <div class="icon">
+                        <i class="material-icons">home</i>
+                    </div>
+                    <div class="content">
+                        <div class="text">SITES ON POC</div>
+                        <div class="number">{{ $poc_sites }}</div>
+                    </div>
+                 </div>
+                </div>
+            </a>
+            <a href="{{ route('site.dormant') }}">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                 <div class="info-box-3 bg-orange hover-zoom-effect">
+                    <div class="icon">
+                        <i class="material-icons">home</i>
+                    </div>
+                    <div class="content">
+                        <div class="text">DORMANT SITES</div>
+                        <div class="number">{{ $dormant_sites }}</div>
+                    </div>
+                 </div>
+                </div>
+            </a>
         </div>
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -175,6 +240,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
+                        <th>Site</th>
                         <th>Products</th>
                         <th>Devices</th>
                         <th>Status</th>
@@ -186,6 +252,11 @@
                         <tr>
                             <td>{{ $key + 1 }}</td>
                             <td>{{ $client->name }}</td>
+                            <td>
+                                @foreach($client->sites as $site)
+                                  <span class="badge bg-indigo">{{ $site->name }}</span>
+                                @endforeach
+                            </td>
                             <td>
                                 @foreach($client->products as $product)
                                   <span class="badge bg-teal">{{ $product->name }}</span>
@@ -205,6 +276,72 @@
                                     <i class="material-icons sm">visibility</i>
                                 </a>
                                 <a href="{{ route('client.edit',$client->id) }}"
+                                   class="btn btn-info waves-effect">
+                                    <i class="material-icons sm">edit</i>
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            RECENT SITE LIST
+                            <span class="badge bg-blue">{{ $recent_sites->count() }}</span>
+                        </h2>
+                    </div>
+                <div class="body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Client</th>
+                        <th>Products</th>
+                        <th>Devices</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($recent_sites as $key=>$site)
+                        <tr>
+                            <td>{{ $key + 1 }}</td>
+                            <td>{{ $site->name }}</td>
+                            <td>
+                                @foreach($site->clients as $client)
+                                  <span class="badge bg-indigo">{{ $client->name }}</span>
+                                @endforeach
+                            </td>
+                            <td>
+                                @foreach($site->products as $product)
+                                  <span class="badge bg-teal">{{ $product->name }}</span>
+                                @endforeach
+                            </td>
+                            <td>{{ $client->devices->count() }}</td>
+                            <td>
+                                @if($client->status == 1)
+                                    <span class="badge bg-green">Active</span>
+                                @elseif($client->status == 2)
+                                    <span class="badge bg-purple">POC</span>
+                                @endif
+                            </td>
+                            <td class="text-center">
+                                <a href=""
+                                   class="btn btn-success waves-effect">
+                                    <i class="material-icons sm">visibility</i>
+                                </a>
+                                <a href="{{ route('site.edit',$site->id) }}"
                                    class="btn btn-info waves-effect">
                                     <i class="material-icons sm">edit</i>
                                 </a>

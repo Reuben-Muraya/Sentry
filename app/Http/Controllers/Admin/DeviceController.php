@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Site;
+use App\Phone;
 use App\Client;
 use App\Device;
-use App\Phone;
 use App\Product;
 use App\Simcard;
-use Brian2694\Toastr\Facades\Toastr;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 
 class DeviceController extends Controller
 {
@@ -45,10 +46,11 @@ class DeviceController extends Controller
     public function create()
     {
         $clients = Client::all();
+        $sites = Site::all();
         $phones = Phone::all();
         $simcards = Simcard::all();
         $products = Product::all();
-        return view('admin.device.create', compact('clients', 'phones', 'simcards', 'products'));
+        return view('admin.device.create', compact('clients','sites', 'phones', 'simcards', 'products'));
     }
 
     /**
@@ -75,6 +77,7 @@ class DeviceController extends Controller
             'simcard' => '',
             'products' => '',
             'client' => '',
+            'site' => '',
             'status' => 'required',
             'date_to_renewal' => '',
         ]);
@@ -97,6 +100,7 @@ class DeviceController extends Controller
 //        print_r($_POST);
 //        echo '<pre>';exit;
         $device->clients()->attach($request->clients);
+        $device->sites()->attach($request->sites);
         $device->products()->attach($request->products);
         $device->phones()->attach($request->phones);
         $device->simcards()->attach($request->simcards);
@@ -126,10 +130,11 @@ class DeviceController extends Controller
     public function edit(Device $device)
     {
         $clients = Client::all();
+        $sites = Site::all();
         $products = Product::all();
         $phones = Phone::all();
         $simcards = Simcard::all();
-        return view('admin.device.edit', compact('device' , 'clients', 'products','phones','simcards'));
+        return view('admin.device.edit', compact('device' , 'clients', 'sites', 'products','phones','simcards'));
     }
 
     /**
@@ -154,9 +159,10 @@ class DeviceController extends Controller
             'sentry_id' => '',
             'supplier' => '',
             'portal_pass' => '',
-            'simcard' => '',
-            'products' => '',
-            'client' => '',
+            'simcard' => 'required',
+            'products' => 'required',
+            'clients' => 'required',
+            'sites' => 'required',
             'status' => 'required',
             'date_to_renewal' => '',
         ]);
@@ -181,6 +187,7 @@ class DeviceController extends Controller
         $device->save();
 
         $device->clients()->sync($request->clients);
+        $device->sites()->sync($request->sites);
         $device->products()->sync($request->products);
         $device->phones()->sync($request->phones);
         $device->simcards()->sync($request->simcards);

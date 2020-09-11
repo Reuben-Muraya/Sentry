@@ -112,7 +112,7 @@
                             </div>
                         </div>
                             <div class="row clearfix">
-                                        <div class="col-md-3">
+                                        <div class="col-md-2">
                                             <label for="status">Select Status</label>
                                             <select name="status" class="form-control show-tick">
                                                 <option {{ $device->status == 1 ? 'Selected' : '' }} value="1">Active</option>
@@ -120,10 +120,10 @@
                                                 <option {{ $device->status == 2 ? 'Selected' : '' }} value="2">Lost</option>
                                             </select>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-2">
                                             <div class="form-line{{ $errors->has('clients') ? 'focused error' : '' }}">
                                             <label for="status">Select Client</label>
-                                                <select name="clients[]" id="client" class="form-control show-tick" data-live-search="false">
+                                                <select name="clients[]" id="client" class="form-control show-tick" data-live-search="false" required>
                                                     @foreach($clients as $client)
                                                         <option
                                                                 @foreach($device->clients as $deviceClient)
@@ -135,9 +135,24 @@
                                             </div>
                                         </div>
                                         <div class="col-md-2">
+                                            <div class="form-line{{ $errors->has('sites') ? 'focused error' : '' }}">
+                                                <label for="status">Select Sites</label>
+                                                <select name="sites[]" id="site" class="form-control show-tick" data-live-search="false" required>
+                                                    <option value="">Select Site</option>
+                                                    @foreach($sites as $site)
+                                                        <option
+                                                            @foreach($device->sites as $deviceSite)
+                                                              {{ $deviceSite->id == $site->id ? 'selected' : '' }}
+                                                            @endforeach
+                                                              value="{{ $site->id }}">{{ $site->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
                                             <div class="form-line{{ $errors->has('products') ? 'focused error' : '' }}">
                                             <label for="status">Select Product</label>
-                                                <select name="products[]" id="product" class="form-control show-tick" data-live-search="false">
+                                                <select name="products[]" id="product" class="form-control show-tick" data-live-search="false" required>
                                                     @foreach($products as $product)
                                                         <option
                                                                 @foreach($device->products as $deviceProduct)
@@ -151,7 +166,7 @@
                                         <div class="col-md-2">
                                             <div class="form-line{{ $errors->has('phones') ? 'focused error' : '' }}">
                                             <label for="status">Select Device Model</label>
-                                                <select name="phones[]" id="phone" class="form-control show-tick" data-live-search="false">
+                                                <select name="phones[]" id="phone" class="form-control show-tick" data-live-search="false" required>
                                                     @foreach($phones as $phone)
                                                         <option
                                                                 @foreach($device->phones as $devicePhone)
@@ -165,7 +180,7 @@
                                         <div class="col-md-2">
                                             <div class="form-line{{ $errors->has('simcards') ? 'focused error' : '' }}">
                                             <label for="status">Select Simcard Type</label>
-                                                <select name="simcards[]" id="phone" class="form-control show-tick" data-live-search="false">
+                                                <select name="simcards[]" id="phone" class="form-control show-tick" data-live-search="false" required>
                                                     @foreach($simcards as $simcard)
                                                         <option
                                                                 @foreach($device->simcards as $deviceSimcard)

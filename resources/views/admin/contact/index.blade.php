@@ -35,6 +35,7 @@
                                     <th>Phone No. 1</th>
                                     <th>Phone No. 2</th>
                                     <th>Client</th>
+                                    <th>Site</th>
                                     <th>Created At</th>
                                     <th>Action</th>
                                 </tr>
@@ -50,6 +51,11 @@
                                         <td>
                                             @foreach($contact->clients as $client)
                                                 <span class="badge bg-indigo">{{ $client->name }}</span>
+                                            @endforeach
+                                        </td>
+                                        <td>
+                                            @foreach($contact->sites as $site)
+                                                <span class="badge bg-blue">{{ $site->name }}</span>
                                             @endforeach
                                         </td>
                                         <td>{{ \Carbon\Carbon::parse($contact->created_at)->format('d/m/Y H:i:s') }}</td>

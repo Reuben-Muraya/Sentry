@@ -62,13 +62,28 @@
                                             <div class="col-md-3">
                                                 <div class="form-line{{ $errors->has('clients') ? 'focused error' : '' }}">
                                                     <label for="status">Select Client</label>
-                                                    <select name="clients[]" id="client" class="form-control show-tick" data-live-search="false">
+                                                    <select name="clients[]" id="client" class="form-control show-tick" data-live-search="false" required>
                                                         @foreach($clients as $client)
                                                             <option
                                                                     @foreach($contact->clients as $contactClient)
                                                                     {{ $contactClient->id == $client->id ? 'selected' : '' }}
                                                                     @endforeach
                                                                     value="{{ $client->id }}">{{ $client->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-line{{ $errors->has('sites') ? 'focused error' : '' }}">
+                                                    <label for="status">Select Sites</label>
+                                                    <select name="sites[]" id="site" class="form-control show-tick" data-live-search="false" required>
+                                                        <option value="">Select Site</option>
+                                                        @foreach($sites as $site)
+                                                            <option
+                                                                @foreach($contact->sites as $contactSite)
+                                                                  {{ $contactSite->id == $site->id ? 'selected' : '' }}
+                                                                @endforeach
+                                                                  value="{{ $site->id }}">{{ $site->name }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>

@@ -49,11 +49,12 @@
                                 <input type="url" id="webpage" name="webpage" class="form-control" placeholder="Type the client web page">
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group row clearfix">
                             <div class="col-md-6">
-                                <div class="{{ $errors->has('products') ? 'focused error' : '' }}">
+                                <div class="{{ $errors->has('clients') ? 'focused error' : '' }}">
                                     <label for="status">Select Client</label>
                                     <select name="clients[]" id="client" class="form-control show-tick" data-live-search="false">
+                                        <option value="">Select Client</option>
                                         @foreach($clients as $client)
                                             <option value="{{ $client->id }}">{{ $client->name }}</option>
                                         @endforeach
@@ -64,6 +65,7 @@
                                 <div class="{{ $errors->has('products') ? 'focused error' : '' }}">
                                     <label for="products">Select Product</label>
                                     <select name="products[]" id="product" class="form-control show-tick " data-live-search="false" multiple>
+                                        <option value="">Select Product</option>
                                         @foreach($products as $product)
                                             <option value="{{ $product->id }}">{{ $product->name }}</option>
                                         @endforeach

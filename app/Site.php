@@ -15,4 +15,14 @@ class Site extends Model
     {
         return $this->belongsToMany('App\Product')->withTimestamps();
     }
+
+    public function contacts()
+    {
+        return $this->belongsToMany('App\Contact')->withTimestamps();
+    }
+
+    public function devices()
+    {
+        return $this->belongsToMany('App\Device')->withTimestamps();
+    }
 }

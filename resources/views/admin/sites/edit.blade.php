@@ -13,7 +13,7 @@
             <div class="card">
                 <div class="header">
                     <h4>
-                        Add Site
+                        Edit Site
                     </h4>
                 </div>
                 <div class="body">
@@ -54,7 +54,7 @@
                             <div class="col-md-6">
                                 <div class="{{ $errors->has('products') ? 'focused error' : '' }}">
                                     <label for="status">Select Client</label>
-                                    <select name="clients[]" id="client" class="form-control show-tick" data-live-search="false">
+                                    <select name="clients[]" id="client" class="form-control show-tick" data-live-search="false" required>
                                         @foreach($clients as $client)
                                             <option 
                                                @foreach($site->clients as $siteClient) 
@@ -68,7 +68,7 @@
                             <div class="col-md-6">
                                 <div class="{{ $errors->has('products') ? 'focused error' : '' }}">
                                     <label for="products">Select Product</label>
-                                    <select name="products[]" id="product" class="form-control show-tick " data-live-search="false" multiple>          
+                                    <select name="products[]" id="product" class="form-control show-tick " data-live-search="false" multiple required>          
                                         @foreach($products as $product)
                                           <option 
                                             @foreach($site->products as $siteProduct) 

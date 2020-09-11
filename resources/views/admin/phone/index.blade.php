@@ -39,7 +39,7 @@
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
                                         <td>{{ $phone->name }}</td>
-                                        <td>{{ $phone->devices->count() }}</td>
+                                        <td><span class="badge bg-indigo">{{ $phone->devices->count() }}</span></td>
                                         <td>{{ \Carbon\Carbon::parse($phone->created_at)->format('d/m/Y H:i:s') }}</td>
                                         <td>{{ \Carbon\Carbon::parse($phone->updated_at)->format('d/m/Y H:i:s') }}</td>
                                         <td class="text-center">

@@ -81,7 +81,7 @@ class SiteController extends Controller
      */
     public function show(Site $site)
     {
-        return view('admin.site.show', compact('site'));
+        return view('admin.sites.show', compact('site'));
     }
 
     /**

@@ -16,11 +16,11 @@
             </a>
             <a class="btn bg-deep-orange waves-effect" href="{{ route('site.status') }}">
                 <i class="material-icons">block</i>
-                <span>Inactive Clients</span>
+                <span>Inactive Sites</span>
             </a>
             <a class="btn bg-purple waves-effect" id="poc" href="{{ route('site.poc') }}">
                 <i class="material-icons">add_alert</i>
-                <span>Clients on POC</span>
+                <span>Sites on POC</span>
             </a>
             <a class="btn bg-red waves-effect" id="deactivate" href="{{ route('site.deactivate') }}">
                 <i class="material-icons">block</i>
@@ -28,7 +28,7 @@
             </a>
             <a class="btn bg-orange waves-effect" id="dormant" href="{{ route('site.dormant') }}">
                 <i class="material-icons">watch_later</i>
-                <span>Dormant Clients</span>
+                <span>Dormant Sites</span>
             </a>
         </div>
         <!-- Exportable Table -->
@@ -54,7 +54,7 @@
                                     <th>Client</th>
                                     <th>Products</th>
                                     <th>Status</th>
-                                    {{-- <th>Devices</th> --}}
+                                    <th>Devices</th>
                                     <th>Created At</th>
                                     <th>Action</th>
                                 </tr>
@@ -84,13 +84,13 @@
                                                 <span class="badge bg-deep-orange">Inactive</span>
                                             @endif
                                         </td>
-                                        {{-- <td>{{ $site->devices->count() }}</td> --}}
+                                        <td><span class="badge bg-blue-grey">{{ $site->devices->count() }}</span></td>
                                         <td>{{ \Carbon\Carbon::parse($site->created_at)->format('d/m/Y H:i:s') }}</td>
                                         <td class="text-center">
-                                            {{-- <a href="{{ route('site.show',$site->id) }}"
+                                            <a href="{{ route('site.show',$site->id) }}"
                                                class="btn btn-success waves-effect">
                                                 <i class="material-icons sm">visibility</i>
-                                            </a> --}}
+                                            </a>
                                             <a href="{{ route('site.edit',$site->id) }}"
                                                class="btn btn-info waves-effect">
                                                 <i class="material-icons sm">edit</i>

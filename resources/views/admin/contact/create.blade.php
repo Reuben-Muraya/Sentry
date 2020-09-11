@@ -62,8 +62,19 @@
                                             <label for="status">Select Client</label>
                                             <br>
                                             <select name="clients[]" id="client" class="form-control show-tick" data-live-search="false">
+                                                <option value="">Select Client</option>
                                                 @foreach($clients as $client)
                                                     <option value="{{ $client->id }}">{{ $client->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="status">Select Site</label>
+                                            <br>
+                                            <select name="sites[]" id="site" class="form-control show-tick" data-live-search="false">
+                                                <option value="">Select Site</option>
+                                                @foreach($sites as $site)
+                                                    <option value="{{ $site->id }}">{{ $site->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -79,6 +90,33 @@
 @endsection
 
 @push('js')
+{{-- <script type="text/javascript">
+    JQuery(document).ready(function () 
+    {
+        JQuery('select[name="client"]').on('change',function(){
+            var clientID = JQuery(this).val();
+            if(clientID)
+            {
+                JQuery.ajax({
+                    url : '/getClients' +clientID,
+                    type: "GET",
+                    dataType : "json",
+                    success: function(data)
+                    {
+                        JQuery('select[name="site"]').empty();
+                        JQuery.each(data, function(key,value){
+                            $('select[name="site"]').append('<option value="' + key + '">'+ value + '</option>');
+                        });
+                    }
+                });
+            }
+            else
+            {
+                $('select[name="site"]').empty();
+            }
+        });
+    });
+</script> --}}
 <script src="{{ asset('assets/backend/plugins/bootstrap-select/js/bootstrap-select.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/i18n/defaults-*.min.js"></script>

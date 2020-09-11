@@ -112,7 +112,7 @@
                             </div>
                         </div>
                             <div class="row clearfix">
-                                        <div class="col-md-3">
+                                        <div class="col-md-2">
                                             <label for="status">Select Status</label>
                                             <select name="status" class="form-control show-tick">
                                                 <option value="1">Active</option>
@@ -120,16 +120,29 @@
                                             </select>
                                         </div>
                                         <div class="col-md-3">
+                                            <div class="{{ $errors->has('clients') ? 'focused error' : '' }}">
                                             <label for="status">Select Client</label>
-                                            <select name="clients[]" id="client" class="form-control show-tick" data-live-search="false">
-                                                @foreach($clients as $client)
-                                                    <option value="{{ $client->id }}">{{ $client->name }}</option>
+                                                <select name="clients[]" id="client" name="client" class="form-control show-tick" data-live-search="false" required>
+                                                    <option value="">Select Client</option>
+                                                    @foreach($clients as $client)
+                                                        <option value="{{ $client->id }}">{{ $client->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="status">Select Site</label>
+                                            <select name="sites[]" id="site" class="form-control show-tick" data-live-search="false" required>
+                                                <option value="">Select Site</option>
+                                                @foreach($sites as $site)
+                                                    <option value="{{ $site->id }}">{{ $site->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="col-md-2">
                                             <label for="status">Select Product</label>
-                                            <select name="products[]" id="client" class="form-control show-tick" data-live-search="false">
+                                            <select name="products[]" id="product" class="form-control show-tick" data-live-search="false" required>
+                                                <option value="">Select Product</option>
                                                 @foreach($products as $product)
                                                     <option value="{{ $product->id }}">{{ $product->name }}</option>
                                                 @endforeach
@@ -137,7 +150,8 @@
                                         </div>
                                         <div class="col-md-2">
                                             <label for="status">Select Device Model</label>
-                                            <select name="phones[]" id="phone" class="form-control show-tick" data-live-search="false">
+                                            <select name="phones[]" id="phone" class="form-control show-tick" data-live-search="false" required>
+                                                <option value="">Select Device Model</option>
                                                 @foreach($phones as $phone)
                                                     <option value="{{ $phone->id }}">{{ $phone->name }}</option>
                                                 @endforeach
@@ -145,7 +159,8 @@
                                         </div>
                                         <div class="col-md-2">
                                             <label for="status">Select Simcard Type</label>
-                                            <select name="simcards[]" id="simcard" class="form-control show-tick" data-live-search="false">
+                                            <select name="simcards[]" id="simcard" class="form-control show-tick" data-live-search="false" required>
+                                                <option value="">Select Simcard Type</option>
                                                 @foreach($simcards as $simcard)
                                                     <option value="{{ $simcard->id }}">{{ $simcard->name }}</option>
                                                 @endforeach

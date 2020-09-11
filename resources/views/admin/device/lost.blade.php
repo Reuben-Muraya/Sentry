@@ -32,12 +32,12 @@
                                     <th>IMEI No.</th>
                                     <th>Phone</th>
                                     <th>Client</th>
+                                    <th>Site</th>
                                     <th>Product</th>
                                     <th>Status</th>
                                     <th>Model</th>
                                     <th>Simcard</th>
                                     <th>Sentry</th>
-                                    {{-- <th>Color</th> --}}
                                     <th>Date To Data Renewal</th>
                                     <th>Days to Renewal</th>
                                     <th>Action</th>
@@ -54,6 +54,13 @@
                                             <span class="badge bg-indigo">
                                                 @foreach($device->clients as $client)
                                                     {{ $client->name }}
+                                                @endforeach
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="badge bg-">
+                                                @foreach($device->sites as $site)
+                                                    {{ $site->name }}
                                                 @endforeach
                                             </span>
                                         </td>

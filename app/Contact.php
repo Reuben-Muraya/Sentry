@@ -10,4 +10,9 @@ class Contact extends Model
     {
         return $this->belongsToMany('App\Client')->withTimestamps();
     }
+
+    public function sites()
+    {
+        return $this->belongsToMany('App\Site')->withTimestamps();
+    }
 }
