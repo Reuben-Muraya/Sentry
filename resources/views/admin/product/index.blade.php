@@ -32,6 +32,7 @@
                                     <th>ID</th>
                                     <th>Name</th>
                                     <th>Client Count</th>
+                                    <th>Site Count</th>
                                     <th>Created At</th>
                                     <th>Updated At</th>
                                     <th>Action</th>
@@ -43,7 +44,7 @@
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $product->name }}</td>
                                     <td><span class="badge bg-blue">{{ $product->clients->count() }}</span></td>
-                                    
+                                    <td><span class="badge bg-indigo">{{ $product->sites->count() }}</span></td>
                                     <td>{{ \Carbon\Carbon::parse($product->created_at)->format('d/m/Y H:i:s') }}</td>
                                     <td>{{ \Carbon\Carbon::parse($product->updated_at)->format('d/m/Y H:i:s') }}</td>
                                     <td class="text-center">

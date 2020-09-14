@@ -137,7 +137,7 @@
                                         <div class="col-md-2">
                                             <div class="form-line{{ $errors->has('sites') ? 'focused error' : '' }}">
                                                 <label for="status">Select Sites</label>
-                                                <select name="sites[]" id="site" class="form-control show-tick" data-live-search="false" required>
+                                                <select name="sites[]" id="site" class="form-control show-tick" data-live-search="false" >
                                                     <option value="">Select Site</option>
                                                     @foreach($sites as $site)
                                                         <option

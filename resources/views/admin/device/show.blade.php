@@ -113,11 +113,11 @@
                                             <h5>Date To Data Renewal</h5>
                                         </div>
                                         <div class="body" id="date1">
-                                            {{ \Carbon\Carbon::parse($device->date_to_renewal)->format('d/m/Y') }}
+                                            {{ \Carbon\Carbon::parse($device->date_to_renewal)->format('m/d/Y') }}
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-2 col-md- col-sm-3 col-xs-3">
+                                {{-- <div class="col-lg-2 col-md- col-sm-3 col-xs-3">
                                     <div class="card">
                                         <div class="header bg-teal">
                                             <h5>Date To Data Renewal</h5>
@@ -126,7 +126,7 @@
                                             <p id="days"></p>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="row clearfix">
                                 <div class="col-lg-3 col-md- col-sm-3 col-xs-3">
@@ -237,27 +237,28 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/i18n/defaults-*.min.js"></script>
 <script>
 
-var countDownDate = new Date("Jul 25, 2021 16:37:52").getTime();
+// var date = document.getElementById("date1");
+// var countDownDate = new Date("date").getTime();
 
-// Run myfunc every second
-var myfunc = setInterval(function() {
+// // Run myfunc every second
+// var myfunc = setInterval(function() {
 
-var now = new Date().getTime();
-var timeleft = countDownDate - now;
+// var now = new Date().getTime();
+// var timeleft = countDownDate - now;
     
-// Calculating the days, hours, minutes and seconds left
-var days = Math.floor(timeleft / (1000 * 60 * 60 * 24));
+// // Calculating the days, hours, minutes and seconds left
+// var days = Math.floor(timeleft / (1000 * 60 * 60 * 24));
 
-// Result is output to the specific element
-document.getElementById("days").innerHTML = days + "d "
+// // Result is output to the specific element
+// document.getElementById("days").innerHTML = days + "d "
 
     
-// Display the message when countdown is over
-if (timeleft < 0) {
-    clearInterval(myfunc);
-    document.getElementById("days").innerHTML = ""
+// // Display the message when countdown is over
+// if (timeleft < 0) {
+//     clearInterval(myfunc);
+//     document.getElementById("days").innerHTML = ""
     
-}
-}, 1000);
+// }
+// }, 1000);
 </script>
 @endpush

@@ -23,7 +23,7 @@
                     </div>
                     <div class="body">
                         <div class="table-responsive">
-                            <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                            <table class="table table-bordered table-striped table-hover dataTable js-exportable" id="deviceTable">
                                 <thead>
                                 <tr>
                                     <th>ID</th>
@@ -89,7 +89,7 @@
                                         </td>
                                         <td>{{ $device->sentry_id }}</td>
                                         {{-- <td>{{ $device->color }}</td> --}}
-                                        <td>{{ \Carbon\Carbon::parse($device->created_at)->format('d/m/Y') }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($device->date_to_renewal)->format('m/d/Y') }}</td>
                                         <td></td>
                                         <td class="text-center">
                                             <a href="{{ route('device.show',$device->id) }}"
@@ -164,39 +164,6 @@
         <!-- Demo Js -->
         <script src="{{ asset('assets/backend/js/demo.js') }}"></script>
         <script type="text/javascript">
-            // function deleteDevice(id) {
-            //     const swalWithBootstrapButtons = Swal.mixin({
-            //         customClass: {
-            //             confirmButton: 'btn btn-success' ,
-            //             cancelButton: 'btn btn-danger'
-            //         },
-            //         buttonsStyling: false
-            //     })
-
-            //     swalWithBootstrapButtons.fire({
-            //         title: 'Are you sure?',
-            //         text: "You won't be able to revert this!",
-            //         type: 'warning',
-            //         showCancelButton: true,
-            //         confirmButtonText: 'Yes, delete it!',
-            //         cancelButtonText: 'No, cancel!',
-            //         reverseButtons: true
-            //     }).then((result) => {
-            //         if (result.value) {
-            //             event.preventDefault();
-            //             document.getElementById('delete-form-'+id).submit();
-            //         } else if (
-            //                 /* Read more about handling dismissals below */
-            //         result.dismiss === Swal.DismissReason.cancel
-            //         ) {
-            //             swalWithBootstrapButtons.fire(
-            //                 'Cancelled',
-            //                 'Your data is safe',
-            //                 'error'
-            //             )
-            //         }
-            //     })
-            // }
             function deleteDevice(id) {
             Swal.fire({
             title: 'Are you sure?',
@@ -218,5 +185,42 @@
             }
             });
         }
+
+        var table = document.getElementById("deviceTable");
+            
+            var x = setInterval(
+                function () {
+            
+                    for (var i = 1, row; row = table.rows[i]; i++) {
+                        //iterate through rows
+                        //rows would be accessed using the "row" variable assigned in the for loop
+            
+                        var endDate = row.cells[11];
+                        countDownDate = new Date(endDate.innerHTML.replace(/-/g, "/")).getTime();
+                        var countDown = row.cells[12];
+                        // Update the count down every 1 second
+            
+                        // Get todays date and time
+                        var now = new Date().getTime();
+            
+                        // Find the distance between now an the count down date
+                        var distance = countDownDate - now;
+            
+                        // Time calculations for days, hours, minutes and seconds
+                        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            
+            
+                        // Display the result in the element
+                        countDown.innerHTML = (days + " Days");
+                        
+            
+                        //If the count down is finished, write some text 
+                        if (distance < 7) {
+                            // countDown.innerHTML = "";
+                            clearInterval(x);
+                            countDown.style.color = "red";
+                        }
+                    }
+                }, 1000);
         </script>
     @endpush

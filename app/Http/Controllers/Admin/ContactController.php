@@ -50,7 +50,7 @@ class ContactController extends Controller
             'email' => 'unique:contacts',
             'phone_1' => '',
             'phone_2' => '',
-            'client' => '',
+            'clients' => '',
         ]);
 
         $contact = new Contact();
@@ -109,8 +109,8 @@ class ContactController extends Controller
             'email' => 'required',
             'phone_1' => '',
             'phone_2' => '',
-            'client' => '',
-            'site' => '',
+            'clients' => '',
+            'sites' => '',
         ]);
 
         $contact = Contact::findOrFail($id);

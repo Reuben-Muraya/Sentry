@@ -29,13 +29,13 @@
                 <div class="card">
                     <div class="header">
                         <h4>
-                            Active Device List
+                            Active Device List 
                             <span class="badge bg-blue">{{ $devices->count() }}</span>
                         </h4>
                     </div>
                     <div class="body">
                         <div class="table-responsive">
-                            <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                            <table class="table table-bordered table-striped table-hover dataTable js-exportable" id="deviceTable">
                                 <thead>
                                 <tr>
                                     <th>ID</th>
@@ -100,9 +100,8 @@
                                             @endforeach
                                         </td>
                                         <td>{{ $device->sentry_id }}</td>
-                                        {{-- <td>{{ $device->color }}</td> --}}
-                                        <td>{{ \Carbon\Carbon::parse($device->created_at)->format('d/m/Y') }}</td>
-                                        <td id="days"></td>
+                                        <td>{{ \Carbon\Carbon::parse($device->date_to_renewal)->format('m/d/Y') }}</td>
+                                        <td></td>
                                         <td class="text-center">
                                             <a href="{{ route('device.show',$device->id) }}"
                                                class="btn btn-success" style="padding: 2px 3px;">
@@ -112,16 +111,6 @@
                                                       class="btn btn-info" style="padding: 2px 3px;">
                                                 <i class="material-icons">edit</i>
                                             </a>
-                                            {{-- <button class="btn btn-danger waves-effect" type="button"
-                                                    onclick="deleteDevice({{ $device->id }})">
-                                                <i class="material-icons">delete</i>
-                                            </button>
-                                            <form id="delete-form-{{ $device->id }}"
-                                                  action="{{ route('device.destroy',$device->id) }}" method="POST"
-                                                  style="display: none;">
-                                                @csrf
-                                                @method('DELETE')
-                                            </form> --}}
                                             <p-button class="btn btn-danger" type="submit" style="padding: 2px 3px;" onclick="deleteDevice({{ $device->id }})">
                                                 <i  class="material-icons" [ngClass]="{'active': pinned}">delete</i>
                                               </p-button>
@@ -176,39 +165,6 @@
         <!-- Demo Js -->
         <script src="{{ asset('assets/backend/js/demo.js') }}"></script>
         <script type="text/javascript">
-            // function deleteDevice(id) {
-            //     const swalWithBootstrapButtons = Swal.mixin({
-            //         customClass: {
-            //             confirmButton: 'btn btn-success' ,
-            //             cancelButton: 'btn btn-danger'
-            //         },
-            //         buttonsStyling: false
-            //     })
-
-            //     swalWithBootstrapButtons.fire({
-            //         title: 'Are you sure?',
-            //         text: "You won't be able to revert this!",
-            //         type: 'warning',
-            //         showCancelButton: true,
-            //         confirmButtonText: 'Yes, delete it!',
-            //         cancelButtonText: 'No, cancel!',
-            //         reverseButtons: true
-            //     }).then((result) => {
-            //         if (result.value) {
-            //             event.preventDefault();
-            //             document.getElementById('delete-form-'+id).submit();
-            //         } else if (
-            //                 /* Read more about handling dismissals below */
-            //         result.dismiss === Swal.DismissReason.cancel
-            //         ) {
-            //             swalWithBootstrapButtons.fire(
-            //                 'Cancelled',
-            //                 'Your data is safe',
-            //                 'error'
-            //             )
-            //         }
-            //     })
-            // }
             function deleteDevice(id) {
             Swal.fire({
             title: 'Are you sure?',
@@ -230,7 +186,42 @@
             }
             });
         }
-
        
+        var table = document.getElementById("deviceTable");
+            
+            var x = setInterval(
+                function () {
+            
+                    for (var i = 1, row; row = table.rows[i]; i++) {
+                        //iterate through rows
+                        //rows would be accessed using the "row" variable assigned in the for loop
+            
+                        var endDate = row.cells[11];
+                        countDownDate = new Date(endDate.innerHTML.replace(/-/g, "/")).getTime();
+                        var countDown = row.cells[12];
+                        // Update the count down every 1 second
+            
+                        // Get todays date and time
+                        var now = new Date().getTime();
+            
+                        // Find the distance between now an the count down date
+                        var distance = countDownDate - now;
+            
+                        // Time calculations for days, hours, minutes and seconds
+                        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            
+            
+                        // Display the result in the element
+                        countDown.innerHTML = (days + " Days");
+            
+                        //If the count down is finished, write some text 
+                        if (distance < 7) {
+                            // countDown.innerHTML = "";
+                            clearInterval(x);
+                            countDown.style.color = "red";
+                        }
+                    }
+                }, 1000);
         </script>
+             
     @endpush

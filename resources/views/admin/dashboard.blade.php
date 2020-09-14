@@ -13,7 +13,7 @@
             <h4>DASHBOARD</h4>
         </div>
         <div class="row clearfix">
-            <a href="#">
+            <a href="{{ route('client.index') }}">
                 <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
                     <div class="info-box-3 bg-green hover-zoom-effect">
                         <div class="icon">
